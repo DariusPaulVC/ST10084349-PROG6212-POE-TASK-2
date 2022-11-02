@@ -1,0 +1,9 @@
+Change Log for ST10084349 for PROG6212 POE Part 2
+1. Added exception handling (try-catch statements)
+2. Added databases
+3. Separated Modules and Semesters into seperate pages
+4. Added a Login Page
+5. Added a Splash/Loading Page
+6. Added a Registration Page
+7. Improved ReadMe file to have information on how to create the database incase of an error and added additional aretfacts
+8. Changed class library
