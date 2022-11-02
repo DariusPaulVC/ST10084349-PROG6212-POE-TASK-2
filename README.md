@@ -95,8 +95,8 @@ FOREIGN KEY (SemesterID) REFERENCES semester(SemesterID)
 * Name: Darius Lynton Paul
 * Student No: ST10084349
 * Email: ST10084349@vcconnect.edu.za
-* Link to GIT Repository: 
-* Link to Kanban board: 
+* Link to GIT Repository: https://github.com/DariusPaulVC/ST10084349-PROG6212-POE-TASK-2
+* Link to Kanban board: https://github.com/users/DariusPaulVC/projects/1/views/1
 ***
 
 ### FAQs
