@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TimeManagerModelStoreContainer" CdmEntityContainer="TimeManagerEntities">
+    <EntitySetMapping Name="modules">
+      <EntityTypeMapping TypeName="TimeManagerModel.module">
+        <MappingFragment StoreEntitySet="modules">
+          <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+          <ScalarProperty Name="ModuleCode" ColumnName="ModuleCode" />
+          <ScalarProperty Name="ModuleName" ColumnName="ModuleName" />
+          <ScalarProperty Name="Credits" ColumnName="Credits" />
+          <ScalarProperty Name="ClassHours" ColumnName="ClassHours" />
+          <ScalarProperty Name="StudyDate" ColumnName="StudyDate" />
+          <ScalarProperty Name="SelfStudyHours" ColumnName="SelfStudyHours" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="SemesterID" ColumnName="SemesterID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="semesters">
+      <EntityTypeMapping TypeName="TimeManagerModel.semester">
+        <MappingFragment StoreEntitySet="semester">
+          <ScalarProperty Name="SemesterID" ColumnName="SemesterID" />
+          <ScalarProperty Name="SemesterName" ColumnName="SemesterName" />
+          <ScalarProperty Name="SemesterWeeks" ColumnName="SemesterWeeks" />
+          <ScalarProperty Name="SemesterStartDate" ColumnName="SemesterStartDate" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="TimeManagerModel.user">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="HashedPassword" ColumnName="HashedPassword" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

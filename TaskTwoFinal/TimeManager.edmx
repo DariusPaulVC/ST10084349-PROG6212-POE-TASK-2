@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TimeManagerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="modules">
+          <Key>
+            <PropertyRef Name="ModuleID" />
+          </Key>
+          <Property Name="ModuleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ModuleCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ModuleName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Credits" Type="int" Nullable="false" />
+          <Property Name="ClassHours" Type="int" Nullable="false" />
+          <Property Name="StudyDate" Type="date" Nullable="false" />
+          <Property Name="SelfStudyHours" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="SemesterID" Type="int" />
+        </EntityType>
+        <EntityType Name="semester">
+          <Key>
+            <PropertyRef Name="SemesterID" />
+          </Key>
+          <Property Name="SemesterID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SemesterName" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="SemesterWeeks" Type="int" Nullable="false" />
+          <Property Name="SemesterStartDate" Type="date" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="HashedPassword" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__modules__Semeste__2A4B4B5E">
+          <End Role="semester" Type="Self.semester" Multiplicity="0..1" />
+          <End Role="modules" Type="Self.modules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="semester">
+              <PropertyRef Name="SemesterID" />
+            </Principal>
+            <Dependent Role="modules">
+              <PropertyRef Name="SemesterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__modules__UserID__29572725">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="modules" Type="Self.modules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="modules">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__semester__UserID__267ABA7A">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="semester" Type="Self.semester" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="semester">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TimeManagerModelStoreContainer">
+          <EntitySet Name="modules" EntityType="Self.modules" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="semester" EntityType="Self.semester" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__modules__Semeste__2A4B4B5E" Association="Self.FK__modules__Semeste__2A4B4B5E">
+            <End Role="semester" EntitySet="semester" />
+            <End Role="modules" EntitySet="modules" />
+          </AssociationSet>
+          <AssociationSet Name="FK__modules__UserID__29572725" Association="Self.FK__modules__UserID__29572725">
+            <End Role="users" EntitySet="users" />
+            <End Role="modules" EntitySet="modules" />
+          </AssociationSet>
+          <AssociationSet Name="FK__semester__UserID__267ABA7A" Association="Self.FK__semester__UserID__267ABA7A">
+            <End Role="users" EntitySet="users" />
+            <End Role="semester" EntitySet="semester" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TimeManagerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="module">
+          <Key>
+            <PropertyRef Name="ModuleID" />
+          </Key>
+          <Property Name="ModuleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ModuleCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ModuleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Credits" Type="Int32" Nullable="false" />
+          <Property Name="ClassHours" Type="Int32" Nullable="false" />
+          <Property Name="StudyDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="SelfStudyHours" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="SemesterID" Type="Int32" />
+          <NavigationProperty Name="semester" Relationship="Self.FK__modules__Semeste__2A4B4B5E" FromRole="modules" ToRole="semester" />
+          <NavigationProperty Name="user" Relationship="Self.FK__modules__UserID__29572725" FromRole="modules" ToRole="users" />
+        </EntityType>
+        <EntityType Name="semester">
+          <Key>
+            <PropertyRef Name="SemesterID" />
+          </Key>
+          <Property Name="SemesterID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SemesterName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SemesterWeeks" Type="Int32" Nullable="false" />
+          <Property Name="SemesterStartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="UserID" Type="Int32" />
+          <NavigationProperty Name="modules" Relationship="Self.FK__modules__Semeste__2A4B4B5E" FromRole="semester" ToRole="modules" />
+          <NavigationProperty Name="user" Relationship="Self.FK__semester__UserID__267ABA7A" FromRole="semester" ToRole="users" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="HashedPassword" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="modules" Relationship="Self.FK__modules__UserID__29572725" FromRole="users" ToRole="modules" />
+          <NavigationProperty Name="semesters" Relationship="Self.FK__semester__UserID__267ABA7A" FromRole="users" ToRole="semester" />
+        </EntityType>
+        <Association Name="FK__modules__Semeste__2A4B4B5E">
+          <End Role="semester" Type="Self.semester" Multiplicity="0..1" />
+          <End Role="modules" Type="Self.module" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="semester">
+              <PropertyRef Name="SemesterID" />
+            </Principal>
+            <Dependent Role="modules">
+              <PropertyRef Name="SemesterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__modules__UserID__29572725">
+          <End Role="users" Type="Self.user" Multiplicity="0..1" />
+          <End Role="modules" Type="Self.module" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="modules">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__semester__UserID__267ABA7A">
+          <End Role="users" Type="Self.user" Multiplicity="0..1" />
+          <End Role="semester" Type="Self.semester" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="semester">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TimeManagerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="modules" EntityType="Self.module" />
+          <EntitySet Name="semesters" EntityType="Self.semester" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <AssociationSet Name="FK__modules__Semeste__2A4B4B5E" Association="Self.FK__modules__Semeste__2A4B4B5E">
+            <End Role="semester" EntitySet="semesters" />
+            <End Role="modules" EntitySet="modules" />
+          </AssociationSet>
+          <AssociationSet Name="FK__modules__UserID__29572725" Association="Self.FK__modules__UserID__29572725">
+            <End Role="users" EntitySet="users" />
+            <End Role="modules" EntitySet="modules" />
+          </AssociationSet>
+          <AssociationSet Name="FK__semester__UserID__267ABA7A" Association="Self.FK__semester__UserID__267ABA7A">
+            <End Role="users" EntitySet="users" />
+            <End Role="semester" EntitySet="semesters" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TimeManagerModelStoreContainer" CdmEntityContainer="TimeManagerEntities">
+          <EntitySetMapping Name="modules">
+            <EntityTypeMapping TypeName="TimeManagerModel.module">
+              <MappingFragment StoreEntitySet="modules">
+                <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+                <ScalarProperty Name="ModuleCode" ColumnName="ModuleCode" />
+                <ScalarProperty Name="ModuleName" ColumnName="ModuleName" />
+                <ScalarProperty Name="Credits" ColumnName="Credits" />
+                <ScalarProperty Name="ClassHours" ColumnName="ClassHours" />
+                <ScalarProperty Name="StudyDate" ColumnName="StudyDate" />
+                <ScalarProperty Name="SelfStudyHours" ColumnName="SelfStudyHours" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="SemesterID" ColumnName="SemesterID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="semesters">
+            <EntityTypeMapping TypeName="TimeManagerModel.semester">
+              <MappingFragment StoreEntitySet="semester">
+                <ScalarProperty Name="SemesterID" ColumnName="SemesterID" />
+                <ScalarProperty Name="SemesterName" ColumnName="SemesterName" />
+                <ScalarProperty Name="SemesterWeeks" ColumnName="SemesterWeeks" />
+                <ScalarProperty Name="SemesterStartDate" ColumnName="SemesterStartDate" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="TimeManagerModel.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="HashedPassword" ColumnName="HashedPassword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

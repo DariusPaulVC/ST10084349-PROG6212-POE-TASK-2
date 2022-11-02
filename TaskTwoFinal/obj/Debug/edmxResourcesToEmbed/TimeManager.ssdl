@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TimeManagerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="modules">
+    <Key>
+      <PropertyRef Name="ModuleID" />
+    </Key>
+    <Property Name="ModuleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ModuleCode" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="ModuleName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Credits" Type="int" Nullable="false" />
+    <Property Name="ClassHours" Type="int" Nullable="false" />
+    <Property Name="StudyDate" Type="date" Nullable="false" />
+    <Property Name="SelfStudyHours" Type="int" Nullable="false" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="SemesterID" Type="int" />
+  </EntityType>
+  <EntityType Name="semester">
+    <Key>
+      <PropertyRef Name="SemesterID" />
+    </Key>
+    <Property Name="SemesterID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SemesterName" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="SemesterWeeks" Type="int" Nullable="false" />
+    <Property Name="SemesterStartDate" Type="date" Nullable="false" />
+    <Property Name="UserID" Type="int" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="HashedPassword" Type="varchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__modules__Semeste__2A4B4B5E">
+    <End Role="semester" Type="Self.semester" Multiplicity="0..1" />
+    <End Role="modules" Type="Self.modules" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="semester">
+        <PropertyRef Name="SemesterID" />
+      </Principal>
+      <Dependent Role="modules">
+        <PropertyRef Name="SemesterID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__modules__UserID__29572725">
+    <End Role="users" Type="Self.users" Multiplicity="0..1" />
+    <End Role="modules" Type="Self.modules" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="modules">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__semester__UserID__267ABA7A">
+    <End Role="users" Type="Self.users" Multiplicity="0..1" />
+    <End Role="semester" Type="Self.semester" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="semester">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TimeManagerModelStoreContainer">
+    <EntitySet Name="modules" EntityType="Self.modules" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="semester" EntityType="Self.semester" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__modules__Semeste__2A4B4B5E" Association="Self.FK__modules__Semeste__2A4B4B5E">
+      <End Role="semester" EntitySet="semester" />
+      <End Role="modules" EntitySet="modules" />
+    </AssociationSet>
+    <AssociationSet Name="FK__modules__UserID__29572725" Association="Self.FK__modules__UserID__29572725">
+      <End Role="users" EntitySet="users" />
+      <End Role="modules" EntitySet="modules" />
+    </AssociationSet>
+    <AssociationSet Name="FK__semester__UserID__267ABA7A" Association="Self.FK__semester__UserID__267ABA7A">
+      <End Role="users" EntitySet="users" />
+      <End Role="semester" EntitySet="semester" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

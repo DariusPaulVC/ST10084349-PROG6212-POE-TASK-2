@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TimeManagerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="module">
+    <Key>
+      <PropertyRef Name="ModuleID" />
+    </Key>
+    <Property Name="ModuleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ModuleCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ModuleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Credits" Type="Int32" Nullable="false" />
+    <Property Name="ClassHours" Type="Int32" Nullable="false" />
+    <Property Name="StudyDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="SelfStudyHours" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="SemesterID" Type="Int32" />
+    <NavigationProperty Name="semester" Relationship="Self.FK__modules__Semeste__2A4B4B5E" FromRole="modules" ToRole="semester" />
+    <NavigationProperty Name="user" Relationship="Self.FK__modules__UserID__29572725" FromRole="modules" ToRole="users" />
+  </EntityType>
+  <EntityType Name="semester">
+    <Key>
+      <PropertyRef Name="SemesterID" />
+    </Key>
+    <Property Name="SemesterID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SemesterName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SemesterWeeks" Type="Int32" Nullable="false" />
+    <Property Name="SemesterStartDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="UserID" Type="Int32" />
+    <NavigationProperty Name="modules" Relationship="Self.FK__modules__Semeste__2A4B4B5E" FromRole="semester" ToRole="modules" />
+    <NavigationProperty Name="user" Relationship="Self.FK__semester__UserID__267ABA7A" FromRole="semester" ToRole="users" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="HashedPassword" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="modules" Relationship="Self.FK__modules__UserID__29572725" FromRole="users" ToRole="modules" />
+    <NavigationProperty Name="semesters" Relationship="Self.FK__semester__UserID__267ABA7A" FromRole="users" ToRole="semester" />
+  </EntityType>
+  <Association Name="FK__modules__Semeste__2A4B4B5E">
+    <End Role="semester" Type="Self.semester" Multiplicity="0..1" />
+    <End Role="modules" Type="Self.module" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="semester">
+        <PropertyRef Name="SemesterID" />
+      </Principal>
+      <Dependent Role="modules">
+        <PropertyRef Name="SemesterID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__modules__UserID__29572725">
+    <End Role="users" Type="Self.user" Multiplicity="0..1" />
+    <End Role="modules" Type="Self.module" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="modules">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__semester__UserID__267ABA7A">
+    <End Role="users" Type="Self.user" Multiplicity="0..1" />
+    <End Role="semester" Type="Self.semester" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="semester">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TimeManagerEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="modules" EntityType="Self.module" />
+    <EntitySet Name="semesters" EntityType="Self.semester" />
+    <EntitySet Name="users" EntityType="Self.user" />
+    <AssociationSet Name="FK__modules__Semeste__2A4B4B5E" Association="Self.FK__modules__Semeste__2A4B4B5E">
+      <End Role="semester" EntitySet="semesters" />
+      <End Role="modules" EntitySet="modules" />
+    </AssociationSet>
+    <AssociationSet Name="FK__modules__UserID__29572725" Association="Self.FK__modules__UserID__29572725">
+      <End Role="users" EntitySet="users" />
+      <End Role="modules" EntitySet="modules" />
+    </AssociationSet>
+    <AssociationSet Name="FK__semester__UserID__267ABA7A" Association="Self.FK__semester__UserID__267ABA7A">
+      <End Role="users" EntitySet="users" />
+      <End Role="semester" EntitySet="semesters" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

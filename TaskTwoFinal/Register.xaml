@@ -1,0 +1,43 @@
+﻿<Window x:Class="TaskTwoFinal.Register"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TaskTwoFinal"
+        mc:Ignorable="d"
+        Title="Register" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.Background>
+            <ImageBrush 
+                        ImageSource="Images\time3.jpg"
+                        Stretch = "Fill">
+            </ImageBrush>
+        </Grid.Background>
+        <Label Content="Create An Account" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" FontStyle="Italic"/>
+        <Label Content="Username" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
+        <Label Content="Email" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
+        <Label Content="Password" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
+        <Label Content="Re-enter Password" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
+        <TextBox x:Name="tbName" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="120"/>
+        <TextBox x:Name="tbEmail" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2"  HorizontalAlignment="Center" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="120"/>
+        <PasswordBox x:Name="pswdBox" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="0,0,0,0" PasswordChar="*" VerticalAlignment="Center" Width="120"/>
+        <PasswordBox x:Name="pswdBox2" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="0,0,0,0" PasswordChar="*" VerticalAlignment="Center" Width="120"/>
+        <Button Content="Create Account" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Height="22" Width="109" Click="Button_Click"/>
+        <TextBlock Text="Click here to go back to Login" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MouseLeftButtonUp="TextBlock_MouseLeftButtonUp" />
+    </Grid>
+</Window>

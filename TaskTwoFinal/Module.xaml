@@ -1,0 +1,53 @@
+﻿<Window x:Class="TaskTwoFinal.Module"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TaskTwoFinal"
+        mc:Ignorable="d"
+        Title="Module" Height="600" Width="1000">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.Background>
+            <ImageBrush 
+                        ImageSource="Images\time3.jpg"
+                        Stretch = "Fill">
+            </ImageBrush>
+        </Grid.Background>
+        <!--Add a module section-->
+        <Label x:Name="lbCode" Grid.Row="1" Grid.Column="0" Content="Module Code" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
+        <Label x:Name="lbName" Grid.Row="2" Grid.Column="0" Content="Module Name" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
+        <Label x:Name="lbCred" Grid.Row="3" Grid.Column="0" Content="Number of Credits" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
+        <Label x:Name="lbHours" Grid.Row="4" Grid.Column="0" Content="Class hours per week" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" RenderTransformOrigin="2.211,-2.733"/>
+        <TextBlock Text="Add a Module" Grid.Row="0" Grid.Column="0" FontStyle="Italic" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Margin="24,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbName" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Margin="0,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="120"/>
+        <TextBox x:Name="tbCred" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" Margin="0,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="120"/>
+        <TextBox x:Name="tbHour" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" Margin="0,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="120"/>
+        <TextBox x:Name="tbCode" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Margin="0,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="120"/>
+        <Button Content="Add Module" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Height="28" Width="140" Click="Button_Click"/>
+        <DatePicker x:Name="dpStudyDate" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="120"/>
+        <Label x:Name="lbStudy" Grid.Row="5" Grid.Column="0" Content="Date you studied" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
+        <TextBox x:Name="tbStudyHours" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Center" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="120"/>
+        <Label x:Name="lbStudyHours" Grid.Row="6" Grid.Column="0" Content="Number of hours you studied for" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
+        <Label x:Name="lbRemain" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
+        <Label x:Name="lbDisplay" Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
+        <DataGrid x:Name="dg1" Visibility="Hidden" Margin="20,0,20,0" Grid.Row="1" Grid.RowSpan="6" Grid.Column="2" Grid.ColumnSpan="2"  />
+        <Button Content="Go back" Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Height="29" Width="92" Click="Button_Click_1"/>
+    </Grid>
+</Window>
